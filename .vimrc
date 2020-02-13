@@ -35,3 +35,8 @@ command! MakeTags !ctags -R .
 
 "FILE BROWSING
 let g:netrw_baner=0
+
+"REMAP ESC KEY
+inoremap jj <ESC>
+
+
