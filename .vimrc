@@ -39,4 +39,5 @@ let g:netrw_baner=0
 "REMAP ESC KEY
 inoremap jj <ESC>
 
-
+"INSERT EMPTY LINE
+nmap oo o<ESC>k
