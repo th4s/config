@@ -1,5 +1,6 @@
 " BASIC SETUP
 
+
 set nocompatible
 syntax enable
 filetype plugin on
@@ -41,3 +42,6 @@ inoremap jj <ESC>
 
 "INSERT EMPTY LINE
 nmap oo o<ESC>k
+
+"Reduce timeout for commands
+set timeoutlen=300
