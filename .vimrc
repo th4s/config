@@ -17,6 +17,8 @@ set showcmd
 
 set cursorline
 set number
+set noerrorbells
+set title
 
 set showmatch
 
@@ -25,7 +27,7 @@ set hlsearch
 
 " TAG JUMPING
 
-" Create the tags file 
+" Create the tags file
 " CTRL + ]  go to definition of function/module/...
 " g + CTRL + ] list all definitions
 " CTRL + T go up tech history
@@ -39,10 +41,11 @@ command! MakeTags !ctags -R .
 let g:netrw_baner=0
 
 "REMAP ESC KEY
-inoremap jj <ESC>
-
+inoremap jj <ESC>`^
 "INSERT EMPTY LINE
 nmap oo o<ESC>k
-
-"Reduce timeout for commands
+"REDUCE TIMEOUT FOR COMMANDS
 set timeoutlen=300
+"MOVE IN INSERT MODE
+inoremap hh <left>
+inoremap ll <right>
