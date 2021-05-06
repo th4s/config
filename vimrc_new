@@ -1,0 +1,54 @@
+" Do not start in compatible vi mode
+set nocompatible
+
+" Create backup, swap and undo directories if they do not exist
+" Backup files are copies of the last saved version of a file
+" Swap files contain the current modification of a file
+" Undo files let you use the undo command after closing and reopening vim
+
+silent !mkdir -p /tmp/vim/backup
+silent !mkdir -p /tmp/vim/swap
+silent !mkdir -p /tmp/vim/undo
+
+
+" Map capslock to ctrl
+silent !setxkbmap -option caps:ctrl_modifier
+
+" Escape insert mode more simple by mapping Ctrl + J to Escape
+inoremap <C-j> <Esc>
+
+set backupdir=/tmp/vim/backup
+set dir=/tmp/vim/swap
+set undodir=/tmp/vim/undo
+" Create undo files
+set undofile
+
+" Add syntx highlightning
+syntax on
+
+" No error bells
+set noerrorbells
+
+" Set length of tab
+set tabstop=4 softtabstop=4
+
+" Set number of spaces for each step of indent
+set shiftwidth=4
+
+" Use spaces instead of tab character
+set expandtab
+
+" Use smart indent 
+set smartindent
+
+" Use line numbering
+set nu
+
+" Do not use word wrap
+set nowrap
+
+" Use case insensitive search until capital letter is used
+set smartcase
+
+" Use incremental search, i.e. highlight search results while typing
+set incsearch
