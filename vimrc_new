@@ -10,18 +10,21 @@ silent !mkdir -p /tmp/vim/backup
 silent !mkdir -p /tmp/vim/swap
 silent !mkdir -p /tmp/vim/undo
 
-
-" Map capslock to ctrl
-silent !setxkbmap -option caps:ctrl_modifier
-
-" Escape insert mode more simple by mapping Ctrl + J to Escape
-inoremap <C-j> <Esc>
+" Create a .vim folder in home dir
+silent !mkdir -p ~/.vim
 
 set backupdir=/tmp/vim/backup
 set dir=/tmp/vim/swap
 set undodir=/tmp/vim/undo
 " Create undo files
 set undofile
+
+
+" Map capslock to ctrl
+silent !setxkbmap -option caps:ctrl_modifier
+
+" Escape insert mode more simple by mapping Ctrl + J to Escape
+inoremap <C-j> <Esc>
 
 " Add syntx highlightning
 syntax on
