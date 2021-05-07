@@ -1,3 +1,6 @@
+" IMPORTANT: Make sure to install the rust tools 'bat' and 'ripgrep' and enter
+" :PlugInstall on your first execution
+"
 """""""""""""""""
 """"" BASIC SETUP 
 """""""""""""""""
@@ -113,9 +116,6 @@ inoremap <C-k> :sus<CR>
 vnoremap <C-k> :sus<CR>
 nnoremap <C-k> :sus<CR>
 
-" Open a new file
-nnoremap <leader>o :e<SPACE>
-
 " Show current open buffers
 nnoremap <leader>, :ls<CR>
 
@@ -140,4 +140,12 @@ endif
 " Now we add the plugins we want to use
 call plug#begin('~/.vim/plugged')
 Plug 'airblade/vim-rooter'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim' 
 call plug#end()
+
+" Use shortcut for fuzzy finding files by name
+nnoremap <silent> <leader>o :GFiles --cached --others --exclude-standard<CR>
+
+" Use shorcut for fuzzy searching for expression in all subdirectories
+nnoremap <silent> <leader>f :Rg<CR>
