@@ -85,7 +85,7 @@ set hidden
 
 " Escape every mode more simple by mapping Ctrl + J to Escape
 nnoremap <C-j> <Esc>
-inoremap <C-j> <Esc>
+inoremap <C-j> <Esc>`^
 vnoremap <C-j> <Esc>
 snoremap <C-j> <Esc>
 xnoremap <C-j> <Esc>
@@ -155,6 +155,7 @@ Plug 'hrsh7th/vim-vsnip'
 Plug 'hrsh7th/vim-vsnip-integ'
 Plug 'joshdick/onedark.vim'
 Plug 'itchyny/lightline.vim'
+Plug 'Raimondi/delimitMate'
 call plug#end()
 
 " Use shortcut for fuzzy finding files by name
@@ -230,3 +231,4 @@ nnoremap <silent> gd <cmd>lua vim.lsp.buf.definition()<CR>
 nnoremap <silent> <F2> <cmd>lua vim.lsp.buf.rename()<CR>
 nnoremap <silent> gr <cmd>lua vim.lsp.buf.references()<CR>
 nnoremap <silent> gt <cmd>lua vim.lsp.buf.type_definition()<CR>
+
