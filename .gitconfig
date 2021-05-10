@@ -1,12 +1,33 @@
 [user]
-	name = th4s
-	email = th4s@metavoid.xyz
+    email = th4s@metavoid.xyz
+    name = th4s
+
+[core]
+    editor = nvim
+    pager = delta
+
+[interactive]
+    diffFilter = delta --color-only
+
+[delta]
+    features = side-by-side line-numbers decorations
+    whitespace-error-style = 22 reverse
+
+[delta "decorations"]
+    commit-decoration-style = bold yellow box ul
+    file-style = bold yellow ul
+    file-decoration-style = none
+
 [diff]
-	tool = vimdiff
+    tool = nvimdiff
+
 [difftool]
-	prompt = false
+    prompt = false
+    trustExitCode = true
+
 [merge]
-	tool = vimdiff
-	conflictstyle = diff3
+    tool = nvimdiff
+
 [mergetool]
-	prompt = false
+    prompt = false
+    trustExitCode = true
