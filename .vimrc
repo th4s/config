@@ -133,6 +133,17 @@ nnoremap <leader>w <C-w>
 inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 
+" Some improvements for brackets and so on 
+inoremap " ""<left>
+inoremap ' ''<left>
+inoremap ( ()<left>
+inoremap [ []<left>
+inoremap { {<CR>}<ESC>O
+
+inoremap <expr> ) strpart(getline('.'), col('.')-1, 1) == ")" ? "\<Right>" : ")"
+inoremap <expr> ] strpart(getline('.'), col('.')-1, 1) == "]" ? "\<Right>" : "]"
+""
+
 """""""""""""""
 """"""" PLUGINS
 """""""""""""""
@@ -151,7 +162,6 @@ Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim' 
 Plug 'joshdick/onedark.vim'
 Plug 'itchyny/lightline.vim'
-Plug 'Raimondi/delimitMate'
 if has('nvim')
 Plug 'neovim/nvim-lspconfig'
 Plug 'hrsh7th/nvim-compe'
