@@ -27,7 +27,12 @@
 
 [merge]
     tool = nvimdiff
+	ff = false
+	commit = false
 
 [mergetool]
     prompt = false
     trustExitCode = true
+
+[pull]
+	ff = only
