@@ -212,7 +212,7 @@ EOF
 autocmd BufWritePre *.rs lua vim.lsp.buf.formatting_sync(nil, 1000)
 
 "Autocomplete config
-set completeopt=menuone,noselect
+set completeopt=menuone,noselect,noinsert
 
 let g:compe = {}
 let g:compe.enabled = v:true
