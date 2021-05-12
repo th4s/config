@@ -267,4 +267,6 @@ nnoremap <silent> gr <cmd>lua vim.lsp.buf.references()<CR>
 nnoremap <silent> gt <cmd>lua vim.lsp.buf.type_definition()<CR>
 inoremap <silent><expr> <C-Space> compe#complete()
 inoremap <silent><expr> <CR> compe#confirm('<CR>')
+nnoremap <silent> ga <cmd>lua vim.lsp.buf.code_action()<CR>
+
 endif
