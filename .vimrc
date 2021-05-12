@@ -79,6 +79,10 @@ set scrolloff=8
 " Keep buffers of multiple files in memory so that you can open a new file without saving the current one
 set hidden
 
+" We do not want vimdiff to open in read only mode
+set noro
+
+
 """""""""""""""
 " BASIC MAPPING
 """""""""""""""
