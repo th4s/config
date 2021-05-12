@@ -134,16 +134,25 @@ inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 
 " Some improvements for brackets and so on 
-inoremap " ""<left>
-inoremap ' ''<left>
 inoremap ( ()<left>
 inoremap [ []<left>
-inoremap { {<CR>}<ESC>O
+inoremap { {}<left>
+inoremap < <><left>
+inoremap <expr> " strpart(getline('.'), col('.')-1, 1) == "\"" ? "\<Right>" : "\"\"\<Left>"
 
 inoremap <expr> ) strpart(getline('.'), col('.')-1, 1) == ")" ? "\<Right>" : ")"
 inoremap <expr> ] strpart(getline('.'), col('.')-1, 1) == "]" ? "\<Right>" : "]"
-""
+inoremap <expr> } strpart(getline('.'), col('.')-1, 1) == "}" ? "\<Right>" : "}"
+inoremap <expr> > strpart(getline('.'), col('.')-1, 1) == ">" ? "\<Right>" : ">"
 
+fun! MyCR()
+    if strpart(getline('.'), col('.') - 2, 2) == '{}'
+        return "\<CR>\<CR>\<Up>\<Tab>"
+    endif
+    return "\<CR>"
+endfun
+autocmd FileType * inoremap <CR> <C-R>=MyCR()<CR>
+""
 """""""""""""""
 """"""" PLUGINS
 """""""""""""""
