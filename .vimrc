@@ -151,7 +151,7 @@ inoremap <expr> > strpart(getline('.'), col('.')-1, 1) == ">" ? "\<Right>" : ">"
 
 fun! MyCR()
     if strpart(getline('.'), col('.') - 2, 2) == '{}'
-        return "\<CR>\<CR>\<Up>\<Tab>"
+        return "\<CR>\<ESC>\O"
     endif
     return "\<CR>"
 endfun
