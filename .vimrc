@@ -120,7 +120,7 @@ nnoremap <leader>c :bd<CR>
 nnoremap <leader><leader> <C-^>
 
 " Suspend vim with shortcut (move process to background and then type 'fg' to return to vim)
-inoremap <C-k> :sus<CR>
+inoremap <C-k> <C-o>:sus<CR>
 vnoremap <C-k> :sus<CR>
 nnoremap <C-k> :sus<CR>
 
@@ -129,6 +129,7 @@ nnoremap <leader>, :ls<CR>
 
 " Quick save
 nnoremap <C-w> :w<CR>
+inoremap <C-w> <C-o>:w<CR>
 
 " Quick window mode
 nnoremap <leader>w <C-w>
