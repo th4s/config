@@ -2,6 +2,7 @@
 [[ $- != *i* ]] && return
 
 PS1='[\u|\w]\$'
+export EDITOR=/usr/bin/nvim
 
 # Clear terminal history
 alias delhistory='cat /dev/null > ~/.bash_history && history -c'
