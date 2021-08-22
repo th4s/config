@@ -9,8 +9,8 @@ alias delhistory='cat /dev/null > ~/.bash_history && history -c'
 # Some frequent shortcuts
 alias ..='cd ..'
 alias ...='cd ../..'
-alias ls='ls --color=auto'
-alias ll='ls -alF --color=auto'
+alias ls='exa'
+alias ll='exa -alF'
 alias gs='git status'
 alias fu='sudo !!'
 
