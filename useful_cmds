@@ -1,3 +1,6 @@
 # Backup entire system
 # for restoring swap soure and target
 rsync -aAXH --info=progress2 --exclude={"/dev/*","/proc/*","/sys/*","/tmp/*","/run/*","/mnt/*","/media/*","/lost+found","/var/lib/dhcpcd/*","/home/th4s/backup/*"} / /home/th4s/backup/20210720.backup
+
+# Write UEFI boot entry for AMD laptop
+sudo efibootmgr --disk /dev/nvme0n1p1 --part 1 --create --label "Arch Linux" --loader /vmlinuz-linux --unicode 'cryptdevice=UUID=2b4daf44-5c5d-453e-9894-8f1d5d609f98:cryptroot root=/dev/mapper/cryptroot rw initrd=\amd-ucode.img initrd=\initramfs-linux.img amdgpu.backlight=0'
