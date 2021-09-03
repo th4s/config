@@ -12,6 +12,7 @@ alias ..='cd ..'
 alias ...='cd ../..'
 alias ls='exa'
 alias ll='exa -alF'
+alias tree='exa -lF --tree --git-ignore'
 alias gs='git status'
 alias fu='sudo !!'
 
