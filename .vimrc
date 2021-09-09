@@ -203,6 +203,11 @@ nnoremap <silent> <leader>o :call GFilesFallback()<CR>
 " Use shorcut for fuzzy searching for expression in all subdirectories
 nnoremap <silent> <leader>f :Rg<CR>
 
+" Use spellchecking and add toggle button
+set spelllang=en
+nnoremap <silent> <F12> :set spell!<cr>
+inoremap <silent> <F12> <C-O>:set spell!<cr>
+
 " Set colorscheme
 colorscheme onedark
 "Use 24-bit (true-color) mode in Vim/Neovim when outside tmux.
