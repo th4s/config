@@ -158,6 +158,14 @@ fun! MyCR()
     return "\<CR>"
 endfun
 autocmd FileType * inoremap <CR> <C-R>=MyCR()<CR>
+
+
+" We want to compile markdown files to pdf when we save them
+" We also add a :preview command and map it to F9
+autocmd BufWritePost *.md :silent !pandoc <afile>:p -V colorlinks=true -V linkcolor=blue -V urlcolor=blue -V toccolor=gray -o /tmp/vim/preview/<afile>:t:r.pdf
+command Preview !xdg-open /tmp/vim/preview/%:t:r.pdf
+map <F9> :Preview<CR><CR>
+
 ""
 """""""""""""""
 """"""" PLUGINS
@@ -240,12 +248,6 @@ EOF
 
 " Auto fmt .rs files before saving
 autocmd BufWritePre *.rs lua vim.lsp.buf.formatting_sync(nil, 1000)
-
-" We want to compile markdown files to pdf when we save them
-" We also add a :preview command and map it to F9
-autocmd BufWritePost *.md :silent !pandoc <afile>:p -V colorlinks=true -V linkcolor=blue -V urlcolor=blue -V toccolor=gray -o /tmp/vim/preview/<afile>:t:r.pdf
-command Preview !xdg-open /tmp/vim/preview/%:t:r.pdf
-map <F9> :Preview<CR><CR>
 
 "Autocomplete config
 set completeopt=menuone,noselect,noinsert
