@@ -238,8 +238,10 @@ endif
 " Configure lightline to use one-dark color-scheme
 let g:lightline = {
   \ 'colorscheme': 'onedark',
+      \ 'active': {
+      \   'left': [ [ 'mode', 'paste' ], [ 'readonly', 'absolutepath', 'modified' ] ],
+      \ }
   \ }
-
 if has('nvim')
 " Setup rust_analyzer as nvim language server
 lua << EOF

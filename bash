@@ -3,6 +3,7 @@
 
 PS1='[\u|\w]\$'
 export EDITOR=/usr/bin/nvim
+export BAT_PAGER="less -MRF"
 
 # Clear terminal history
 alias delhistory='cat /dev/null > ~/.bash_history && history -c'
