@@ -58,6 +58,9 @@ calc() {
 # Source node-version manager
 . "/usr/share/nvm/init-nvm.sh"
 
+# Source git-prompt
+. "$HOME/.git-prompt.sh"
+
 # Set prompt_command to display git informationSource
 PROMPT_COMMAND='__git_ps1 "\u|\w" "\\\$ "'
 
