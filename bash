@@ -2,6 +2,7 @@
 [[ $- != *i* ]] && return
 
 PS1='[\u|\w$(__git_ps1 " (%s)")]\$ '
+PATH="$PATH:$HOME/.local/bin"
 
 # Alway cd into folders in home folder, no matter where we are
 CDPATH=.:~
