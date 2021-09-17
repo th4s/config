@@ -53,6 +53,12 @@ calc() {
     echo "scale=3;$@" | bc -l
 }
 
+# Configure xclip
+# copy to clipboard
+alias xc="xclip -se c"
+# copy to pirmary buffer
+alias xb="xclip"
+
 # Source rust stuff
 . "$HOME/.cargo/env"
 
