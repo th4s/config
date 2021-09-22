@@ -25,6 +25,12 @@ alias tree='exa -lF --tree --git-ignore'
 alias gs='git status -sb'
 alias fu='sudo !!'
 
+# Simple variant of locate
+# shows path of a file 
+function where() {
+    find . -iname "*$1*"
+}
+
 # We can query the internet for awesome terminal command help
 function cheat() {
     curl cht.sh/$1
