@@ -14,9 +14,10 @@
     whitespace-error-style = 22 reverse
 
 [delta "decorations"]
-    commit-decoration-style = bold yellow box ul
-    file-style = bold yellow ul
-    file-decoration-style = none
+    commit-decoration-style = bold cyan box ul
+    file-style = bold yellow 
+    file-decoration-style = cyan box ul
+    hunk-header-style = omit
 
 [diff]
     tool = nvimdiff
@@ -36,7 +37,10 @@
 
 [pull]
     ff = only
+
 [init]
 	defaultBranch = main
+
 [credential]
 	helper = /usr/lib/git-core/git-credential-libsecret
+

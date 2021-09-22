@@ -7,7 +7,7 @@
 # Set PATH
 PATH="$PATH:$HOME/.local/bin"
 
-# Alway cd into folders in home folder, no matter where we are
+# Always cd into folders in home folder, no matter where we are
 CDPATH=.:~
 
 # Set nvim as our editor
@@ -22,11 +22,15 @@ alias delhistory='cat /dev/null > ~/.bash_history && history -c'
 # Some frequent shortcuts
 alias ..='cd ..'
 alias ...='cd ../..'
+alias ....='cd ../../..'
 alias ls='exa'
 alias ll='exa -alF'
 alias tree='exa -lF --tree --git-ignore'
 alias gs='git status -sb'
-alias fu='sudo !!'
+alias ga='git add -A'
+alias gd='git diff HEAD'
+alias gl='git log'
+alias open='xdg-open'
 
 # Simple variant of locate
 # shows path of a file 

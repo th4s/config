@@ -88,6 +88,10 @@ set noro
 " BASIC MAPPING
 """""""""""""""
 
+" Disable weird modes like command history and ex mode
+nnoremap q: <nop>
+nnoremap Q <nop>
+
 " Escape every mode more simple by mapping Ctrl + J to Escape
 nnoremap <C-j> <Esc>
 inoremap <C-j> <Esc>
