@@ -2,7 +2,7 @@
 [[ $- != *i* ]] && return
 
 # This is currently overriden by PROMPT_COMMAND, so we uncomment it here
-#PS1='[\\033[38;5;33m\u\\033[0m|\w\$ '
+#PS1='\[\033[38;5;33m\]\u\[\033[0m\]|\w$ '
 
 # Set PATH
 PATH="$PATH:$HOME/.local/bin"
@@ -78,7 +78,7 @@ alias xb="xclip"
 . "$HOME/.git-prompt.sh"
 
 # Set prompt_command to display git informationSource
-PROMPT_COMMAND='__git_ps1 "[\\033[38;5;33m\u\\033[0m|\w" "\\\$ "'
+PROMPT_COMMAND='__git_ps1 "\[\033[38;5;33m\]\u\[\033[0m\]|\w" "\\\$ "'
 
 #Some git prompt modification
 GIT_PS1_SHOWCOLORHINTS=1
