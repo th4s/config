@@ -1,7 +1,10 @@
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
-PS1='[\u|\w$(__git_ps1 " (%s)")]\$ '
+# This is currently overriden by PROMPT_COMMAND, so we uncomment it here
+#PS1='[\\033[38;5;33m\u\\033[0m|\w\$ '
+
+# Set PATH
 PATH="$PATH:$HOME/.local/bin"
 
 # Alway cd into folders in home folder, no matter where we are
@@ -75,7 +78,7 @@ alias xb="xclip"
 . "$HOME/.git-prompt.sh"
 
 # Set prompt_command to display git informationSource
-PROMPT_COMMAND='__git_ps1 "\u|\w" "\\\$ "'
+PROMPT_COMMAND='__git_ps1 "[\\033[38;5;33m\u\\033[0m|\w" "\\\$ "'
 
 #Some git prompt modification
 GIT_PS1_SHOWCOLORHINTS=1
