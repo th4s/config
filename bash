@@ -19,6 +19,9 @@ export BAT_PAGER="less -MRF"
 # Clear terminal history
 alias delhistory='cat /dev/null > ~/.bash_history && history -c'
 
+# Update rust
+alias rsup='rustup update && cargo install-update --all'
+
 # Some frequent shortcuts
 alias ..='cd ..'
 alias ...='cd ../..'
