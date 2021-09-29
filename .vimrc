@@ -155,6 +155,8 @@ inoremap <expr> ] strpart(getline('.'), col('.')-1, 1) == "]" ? "\<Right>" : "]"
 inoremap <expr> } strpart(getline('.'), col('.')-1, 1) == "}" ? "\<Right>" : "}"
 inoremap <expr> > strpart(getline('.'), col('.')-1, 1) == ">" ? "\<Right>" : ">"
 
+" This is our improved return to make correct indentation in '{' and '}'
+" brackets
 fun! MyCR()
     if strpart(getline('.'), col('.') - 2, 2) == '{}'
         return "\<CR>\<ESC>\O"
@@ -286,7 +288,7 @@ nnoremap <silent> gd <cmd>lua vim.lsp.buf.definition()<CR>
 nnoremap <silent> <F2> <cmd>lua vim.lsp.buf.rename()<CR>
 nnoremap <silent> gr <cmd>lua vim.lsp.buf.references()<CR>
 nnoremap <silent> gt <cmd>lua vim.lsp.buf.type_definition()<CR>
-inoremap <silent><expr> <C-Space> compe#complete()
+inoremap <silent><expr> <C-Tab> compe#complete()
 inoremap <silent><expr> <CR> compe#confirm('<CR>')
 nnoremap <silent> ga <cmd>lua vim.lsp.buf.code_action()<CR>
 
