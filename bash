@@ -22,6 +22,9 @@ alias delhistory='cat /dev/null > ~/.bash_history && history -c'
 # Update rust
 alias rsup='rustup update && cargo install-update --all'
 
+# DIRTY: Set up internet when connected to dock
+alias netup='sudo ip link set enp6s0f3u1u1 up && sudo systemctl restart dhcpcd'
+
 # Some frequent shortcuts
 alias ..='cd ..'
 alias ...='cd ../..'
