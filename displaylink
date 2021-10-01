@@ -1,5 +1,0 @@
-# The following command was needed to properly load the evdi driver.
-# When installing displaylink I assume, that it was built against the
-# wrong kernel headers. Reinstalling the linux-headers automatically
-# triggered this command.
-dkms install --no-depmod -m evdi -v 1.9.1 -k 5.14.2-arch1-2
