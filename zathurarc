@@ -1,0 +1,6 @@
+# This is a zathura config file.
+# Put this file into ~/.config/zathura/
+
+# Copy to clipboard instead of primary
+set selection-clipboard clipboard
+
