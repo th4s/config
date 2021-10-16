@@ -54,6 +54,12 @@ function weather() {
     curl wttr.in/$1
 }
 
+function switch_net() {
+    wpa_cli list_networks
+    read -n 1 -p "Please select a network: " NETWORK
+    wpa_cli select_network $NETWORK
+} 
+
 # Replace capslock with additional CTRL
 setxkbmap -option caps:ctrl_modifier
 
