@@ -1,6 +1,8 @@
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
+# Set DIRTY flag to true to enable dirty-marked commands
+DIRTY=true
 
 # Set PATH
 PATH="$PATH:$HOME/.local/bin"
@@ -11,7 +13,7 @@ CDPATH=.:~
 # Set nvim as our editor
 if [[ -f "/usr/bin/nvim" ]]; then
     export EDITOR=/usr/bin/nvim
-else
+elif [[ -f "/usr/bin/vim" ]]; then
     export EDITOR=/usr/bin/vim
 fi
 
@@ -19,23 +21,37 @@ fi
 alias delhistory='cat /dev/null > ~/.bash_history && history -c'
 
 # Update rust
-alias rsup='rustup update && cargo install-update --all'
+if [[ -d "$HOME/.cargo" ]]; then
+    alias rsup='rustup update && cargo install-update --all'
+fi
 
 # DIRTY: Set up internet when connected to dock
-alias netup='sudo ip link set enp6s0f3u1u1 up && sudo systemctl restart dhcpcd'
+if [[ "$DIRTY" = true ]]; then
+    alias netup='sudo ip link set enp6s0f3u1u1 up && sudo systemctl restart dhcpcd'
+fi
 
 # Some frequent shortcuts
 alias ..='cd ..'
 alias ...='cd ../..'
 alias ....='cd ../../..'
-alias ls='exa'
-alias ll='exa -alF'
-alias tree='exa -lF --tree --git-ignore'
-alias gs='git status -sb'
-alias ga='git add -A'
-alias gd='git diff HEAD'
-alias gl='git log'
-alias open='xdg-open'
+
+
+if [[ -f "/usr/bin/xdg-open" ]]; then
+    alias open='xdg-open'
+fi
+
+if [[ -f "/usr/bin/exa" ]]; then
+    alias ls='exa'
+    alias ll='exa -alF'
+    alias tree='exa -lF --tree --git-ignore'
+fi
+
+if [[ -f "/usr/bin/git" ]]; then
+    alias gs='git status -sb'
+    alias ga='git add -A'
+    alias gd='git diff HEAD'
+    alias gl='git log'
+fi
 
 # Simple variant of locate
 # shows path of a file 
@@ -53,20 +69,24 @@ function weather() {
     curl wttr.in/$1
 }
 
-function switch_net() {
-    wpa_cli list_networks
-    read -n 1 -p "Please select a network: " NETWORK
-    wpa_cli select_network $NETWORK
-} 
+if [[ "$DIRTY" = true ]]; then
+    function switch_net() {
+        wpa_cli list_networks
+        read -n 1 -p "Please select a network: " NETWORK
+        wpa_cli select_network $NETWORK
+    } 
+fi
 
 # Replace capslock with additional CTRL
 setxkbmap -option caps:ctrl_modifier
 
 # Some hotkeys for tmux
-alias t="tmux"
-alias ta="t a -t"
-alias tls="t ls"
-alias tn="t new -t"
+if [[ -f "/usr/bin/tmux" ]]; then
+    alias t="tmux"
+    alias ta="t a -t"
+    alias tls="t ls"
+    alias tn="t new -t"
+fi
 
 # Search through history with arrow keys
 bind '"\e[A": history-search-backward'
@@ -78,10 +98,12 @@ calc() {
 }
 
 # Configure xclip
-# copy to clipboard
-alias xc="xclip -se c"
-# copy to pirmary buffer
-alias xb="xclip"
+if [[ -f "/usr/bin/xclip" ]]; then
+    # copy to clipboard
+    alias xc="xclip -se c"
+    # copy to pirmary buffer
+    alias xb="xclip"
+fi
 
 # Source rust stuff
 if [[ -d "$HOME/.cargo" ]]; then
