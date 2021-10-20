@@ -11,9 +11,9 @@ PATH="$PATH:$HOME/.local/bin"
 CDPATH=.:~
 
 # Set nvim as our editor
-if [[ -f "/usr/bin/nvim" ]]; then
+if [[ -x "$(command -v nvim)" ]]; then
     export EDITOR=/usr/bin/nvim
-elif [[ -f "/usr/bin/vim" ]]; then
+elif [[ -x "$(command -v vim)" ]]; then
     export EDITOR=/usr/bin/vim
 fi
 
@@ -36,17 +36,17 @@ alias ...='cd ../..'
 alias ....='cd ../../..'
 
 
-if [[ -f "/usr/bin/xdg-open" ]]; then
+if [[ -x "$(command -v xdg-open)" ]]; then
     alias open='xdg-open'
 fi
 
-if [[ -f "/usr/bin/exa" ]]; then
+if [[ -x "$(command -v exa)" ]]; then
     alias ls='exa'
     alias ll='exa -alF'
     alias tree='exa -lF --tree --git-ignore'
 fi
 
-if [[ -f "/usr/bin/git" ]]; then
+if [[ -x "$(command -v git)" ]]; then
     alias gs='git status -sb'
     alias ga='git add -A'
     alias gd='git diff HEAD'
@@ -81,7 +81,7 @@ fi
 setxkbmap -option caps:ctrl_modifier
 
 # Some hotkeys for tmux
-if [[ -f "/usr/bin/tmux" ]]; then
+if [[ -x "$(command -v tmux)" ]]; then
     alias t="tmux"
     alias ta="t a -t"
     alias tls="t ls"
@@ -98,7 +98,7 @@ calc() {
 }
 
 # Configure xclip
-if [[ -f "/usr/bin/xclip" ]]; then
+if [[ -x "$(command -v xclip)" ]]; then
     # copy to clipboard
     alias xc="xclip -se c"
     # copy to pirmary buffer
