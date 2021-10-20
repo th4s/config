@@ -42,8 +42,8 @@ fi
 
 if [[ -x "$(command -v exa)" ]]; then
     alias ls='exa'
-    alias ll='exa -alF'
-    alias tree='exa -lF --tree --git-ignore'
+    alias ll='exa -algF'
+    alias tree='exa -lgF --tree --git-ignore'
 fi
 
 if [[ -x "$(command -v git)" ]]; then
