@@ -116,7 +116,7 @@ if [[ -d "/usr/share/nvm" ]]; then
 fi
 
 # Source git-prompt and set PS1
-if [[ -f ".git-prompt.sh" ]]; then
+if [[ -f "~/.git-prompt.sh" ]]; then
     . "$HOME/.git-prompt.sh"
     
     # Set prompt_command to display git informationSource
