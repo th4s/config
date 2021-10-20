@@ -1,8 +1,6 @@
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
-# This is currently overriden by PROMPT_COMMAND, so we uncomment it here
-#PS1='\[\033[38;5;33m\]\u\[\033[0m\]|\w$ '
 
 # Set PATH
 PATH="$PATH:$HOME/.local/bin"
@@ -11,10 +9,11 @@ PATH="$PATH:$HOME/.local/bin"
 CDPATH=.:~
 
 # Set nvim as our editor
-export EDITOR=/usr/bin/nvim
-
-# Bat should display filename as footer
-export BAT_PAGER="less -MRF"
+if [[ -f "/usr/bin/nvim" ]]; then
+    export EDITOR=/usr/bin/nvim
+else
+    export EDITOR=/usr/bin/vim
+fi
 
 # Clear terminal history
 alias delhistory='cat /dev/null > ~/.bash_history && history -c'
@@ -85,21 +84,28 @@ alias xc="xclip -se c"
 alias xb="xclip"
 
 # Source rust stuff
-. "$HOME/.cargo/env"
+if [[ -d "$HOME/.cargo" ]]; then
+    . "$HOME/.cargo/env"
+fi
 
 # Source node-version manager
-. "/usr/share/nvm/init-nvm.sh"
+if [[ -d "/usr/share/nvm" ]]; then
+    . "/usr/share/nvm/init-nvm.sh"
+fi
 
-# Source git-prompt
-. "$HOME/.git-prompt.sh"
-
-# Set prompt_command to display git informationSource
-PROMPT_COMMAND='__git_ps1 "\[\033[38;5;33m\]\u\[\033[0m\]|\w" "\\\$ "'
-
-#Some git prompt modification
-GIT_PS1_SHOWCOLORHINTS=1
-GIT_PS1_SHOWUPSTREAM="auto"
-GIT_PS1_SHOWDIRTYSTATE=1
-GIT_PS1_SHOWSTASHSTATE=1
-GIT_PS1_SHOWUNTRACKEDFILES=1
-
+# Source git-prompt and set PS1
+if [[ -f ".git-prompt.sh" ]]; then
+    . "$HOME/.git-prompt.sh"
+    
+    # Set prompt_command to display git informationSource
+    PROMPT_COMMAND='__git_ps1 "\[\033[38;5;33m\]\u@\h\[\033[0m\]|\w" "\\\$ "'
+    
+    #Some git prompt modification
+    GIT_PS1_SHOWCOLORHINTS=1
+    GIT_PS1_SHOWUPSTREAM="auto"
+    GIT_PS1_SHOWDIRTYSTATE=1
+    GIT_PS1_SHOWSTASHSTATE=1
+    GIT_PS1_SHOWUNTRACKEDFILES=1
+else
+    PS1='\[\033[38;5;33m\]\u@\h\[\033[0m\]|\w$ '
+fi
