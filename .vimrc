@@ -39,7 +39,6 @@ filetype plugin indent on
 " during diagnostic
 set signcolumn=yes
 
-
 " No error bells
 set noerrorbells
 
@@ -149,6 +148,7 @@ inoremap [ []<left>
 inoremap { {}<left>
 inoremap < <><left>
 inoremap <expr> " strpart(getline('.'), col('.')-1, 1) == "\"" ? "\<Right>" : "\"\"\<Left>"
+inoremap <expr> ` strpart(getline('.'), col('.')-1, 1) == "\`" ? "\<Right>" : "\`\`\<Left>"
 
 inoremap <expr> ) strpart(getline('.'), col('.')-1, 1) == ")" ? "\<Right>" : ")"
 inoremap <expr> ] strpart(getline('.'), col('.')-1, 1) == "]" ? "\<Right>" : "]"
@@ -165,6 +165,10 @@ fun! MyCR()
 endfun
 autocmd FileType * inoremap <CR> <C-R>=MyCR()<CR>
 
+" Use spellchecking and add toggle button
+set spelllang=en
+nnoremap <silent> <F12> :set spell!<cr>
+inoremap <silent> <F12> <C-O>:set spell!<cr>
 
 " We want to compile markdown files to pdf when we save them
 " We also add a :preview command and map it to F9
@@ -172,11 +176,9 @@ autocmd BufWritePost *.md :silent !pandoc <afile>:p -V colorlinks=true -V linkco
 command Preview !xdg-open /tmp/vim/preview/%:t:r.pdf
 map <F9> :Preview<CR><CR>
 
-""
 """""""""""""""
 """"""" PLUGINS
 """""""""""""""
-
 " We use 'vim-plug' as a plugin manager. The following code automates the installation
 let data_dir = has('nvim') ? stdpath('data') . '/site' : '~/.vim'
 if empty(glob(data_dir . '/autoload/plug.vim'))
@@ -193,9 +195,12 @@ Plug 'joshdick/onedark.vim'
 Plug 'itchyny/lightline.vim'
 if has('nvim')
 Plug 'neovim/nvim-lspconfig'
-Plug 'hrsh7th/nvim-compe'
+Plug 'hrsh7th/cmp-nvim-lsp'
+Plug 'hrsh7th/cmp-buffer'
+Plug 'hrsh7th/nvim-cmp'
+Plug 'hrsh7th/cmp-vsnip'
 Plug 'hrsh7th/vim-vsnip'
-Plug 'hrsh7th/vim-vsnip-integ'
+Plug 'simrat39/rust-tools.nvim'
 endif
 call plug#end()
 
@@ -218,11 +223,10 @@ nnoremap <silent> <leader>o :call GFilesFallback()<CR>
 " Use shorcut for fuzzy searching for expression in all subdirectories
 nnoremap <silent> <leader>f :Rg<CR>
 
-" Use spellchecking and add toggle button
-set spelllang=en
-nnoremap <silent> <F12> :set spell!<cr>
-inoremap <silent> <F12> <C-O>:set spell!<cr>
 
+"""""""""""""""
+""""""" COLORS
+"""""""""""""""
 " Set colorscheme
 colorscheme onedark
 "Use 24-bit (true-color) mode in Vim/Neovim when outside tmux.
@@ -248,39 +252,21 @@ let g:lightline = {
       \   'left': [ [ 'mode', 'paste' ], [ 'readonly', 'absolutepath', 'modified' ] ],
       \ }
   \ }
+
+""""""""""""""""""""
+""""""" NEOVIM ONLY
+""""""""""""""""""""
 if has('nvim')
 " Setup rust_analyzer as nvim language server
 lua << EOF
-require'lspconfig'.rust_analyzer.setup{}
+require('rust-tools').setup({})
 EOF
 
+"""""""""""""""""""
+""""""" LSP CONFIG
+"""""""""""""""""""
 " Auto fmt .rs files before saving
 autocmd BufWritePre *.rs lua vim.lsp.buf.formatting_sync(nil, 1000)
-
-"Autocomplete config
-set completeopt=menuone,noselect,noinsert
-
-let g:compe = {}
-let g:compe.enabled = v:true
-let g:compe.autocomplete = v:true
-let g:compe.debug = v:false
-let g:compe.min_length = 1
-let g:compe.preselect = 'enable'
-let g:compe.throttle_time = 80
-let g:compe.source_timeout = 200
-let g:compe.incomplete_delay = 400
-let g:compe.max_abbr_width = 100
-let g:compe.max_kind_width = 100
-let g:compe.max_menu_width = 100
-let g:compe.documentation = v:true
-let g:compe.source = {}
-let g:compe.source.path = v:true
-let g:compe.source.buffer = v:true
-let g:compe.source.calc = v:true
-let g:compe.source.nvim_lsp = v:true
-let g:compe.source.nvim_lua = v:true
-let g:compe.source.vsnip = v:true
-let g:compe.source.ultisnips = v:true
 
 " Now we map some hotkeys for code navigation
 nnoremap <silent> K <cmd>lua vim.lsp.buf.hover()<CR>
@@ -288,8 +274,43 @@ nnoremap <silent> gd <cmd>lua vim.lsp.buf.definition()<CR>
 nnoremap <silent> <F2> <cmd>lua vim.lsp.buf.rename()<CR>
 nnoremap <silent> gr <cmd>lua vim.lsp.buf.references()<CR>
 nnoremap <silent> gt <cmd>lua vim.lsp.buf.type_definition()<CR>
-inoremap <silent><expr> <C-n> compe#complete()
-inoremap <silent><expr> <CR> compe#confirm('<CR>')
 nnoremap <silent> ga <cmd>lua vim.lsp.buf.code_action()<CR>
+
+"""""""""""""""""""""
+""""""" CMP CONFIG
+"""""""""""""""""""""
+set completeopt=menu,menuone,noselect
+
+lua << EOF
+  -- Setup nvim-cmp
+  local cmp = require'cmp'
+
+  cmp.setup({
+    snippet = {
+      expand = function(args)
+        vim.fn["vsnip#anonymous"](args.body)
+      end,
+    },
+    mapping = {
+      ['<Tab>'] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }),
+      ['<S-Tab>'] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert }),
+      ['<C-d>'] = cmp.mapping.scroll_docs(-4),
+      ['<C-f>'] = cmp.mapping.scroll_docs(4),
+      ['<C-Space>'] = cmp.mapping.complete(),
+      ['<C-e>'] = cmp.mapping.close(),
+      ['<CR>'] = cmp.mapping.confirm({ select = true }),
+    },
+    sources = {
+      { name = 'nvim_lsp' },
+      { name = 'vsnip' },
+      { name = 'buffer' },
+    }
+  })
+
+  -- Setup lspconfig for rust-analyzer
+  require('lspconfig').rust_analyzer.setup {
+    capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
+  }
+EOF
 
 endif
