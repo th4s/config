@@ -69,6 +69,12 @@ function weather() {
     curl wttr.in/$1
 }
 
+# Count lines of code in a directory recursively for all files
+# having a file ending
+function loc() {
+        find . -name "*.$1" | xargs wc -l | sort -nr
+    }
+
 if [[ "$DIRTY" = true ]]; then
     function switch_net() {
         wpa_cli list_networks
