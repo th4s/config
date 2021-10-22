@@ -69,6 +69,11 @@ function weather() {
     curl wttr.in/$1
 }
 
+# Copy lines A:B from a file to clipboard
+function lc() {
+    bat -pp -r $1 $2 | xc
+    }
+
 # Count lines of code in a directory recursively for all files
 # having a file ending
 function loc() {
