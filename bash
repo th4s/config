@@ -70,9 +70,11 @@ function weather() {
 }
 
 # Copy lines A:B from a file to clipboard
-function lc() {
-    bat -pp -r $1 $2 | xc
+if [[ -x "$(command -v bat)" ]]; then
+    function lc() {
+        bat -pp -r $1 $2 | xc
     }
+fi
 
 # Count lines of code in a directory recursively for all files
 # having a file ending
