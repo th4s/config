@@ -129,18 +129,18 @@ if [[ -d "/usr/share/nvm" ]]; then
 fi
 
 # Source git-prompt and set PS1
-if [[ -f "~/.git-prompt.sh" ]]; then
+if [[ -e "$HOME/.git-prompt.sh" ]]; then
     . "$HOME/.git-prompt.sh"
     
     # Set prompt_command to display git informationSource
     PROMPT_COMMAND='__git_ps1 "\[\033[38;5;33m\]\u@\h\[\033[0m\]|\w" "\\\$ "'
     
     #Some git prompt modification
-    GIT_PS1_SHOWCOLORHINTS=1
+    GIT_PS1_SHOWCOLORHINTS=true
     GIT_PS1_SHOWUPSTREAM="auto"
-    GIT_PS1_SHOWDIRTYSTATE=1
-    GIT_PS1_SHOWSTASHSTATE=1
-    GIT_PS1_SHOWUNTRACKEDFILES=1
+    GIT_PS1_SHOWDIRTYSTATE=true
+    GIT_PS1_SHOWSTASHSTATE=true
+    GIT_PS1_SHOWUNTRACKEDFILES=true
 else
     PS1='\[\033[38;5;33m\]\u@\h\[\033[0m\]|\w$ '
 fi
