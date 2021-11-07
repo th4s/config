@@ -2,10 +2,6 @@ upstream geth_ws {
     server 127.0.0.1:8546;
 }
 
-upstream lighthouse_http {
-    server 127.0.0.1:5052;
-}
-
 server {
 
     root /var/www/metavoid.xyz;
@@ -31,15 +27,6 @@ server {
         proxy_read_timeout 3600;
         auth_basic "Geth Websocket Access";
         auth_basic_user_file /etc/nginx/.htpasswd;
-        limit_req zone=auth burst=3 nodelay;
-    }
-
-    location /lighthouse/ {
-        proxy_pass http://lighthouse_http/;
-        proxy_http_version 1.1;
-        proxy_read_timeout 3600;
-        auth_basic "Lighthouse Beacon Http Access";
-	auth_basic_user_file /etc/nginx/.htpasswd;
         limit_req zone=auth burst=3 nodelay;
     }
 
