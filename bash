@@ -72,7 +72,7 @@ function weather() {
 # Copy lines A:B from a file to clipboard
 if [[ -x "$(command -v bat)" ]]; then
     function lc() {
-        bat -pp -r $1 $2 | xc
+        bat -pp -r $1 $2 | xclip -se c
     }
 fi
 
