@@ -8,7 +8,7 @@ DIRTY=true
 PATH="$PATH:$HOME/.local/bin"
 
 # Always cd into folders in home folder, no matter where we are
-CDPATH=.:~
+CDPATH=:~
 
 # Set nvim as our editor
 if [[ -x "$(command -v nvim)" ]]; then
