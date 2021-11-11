@@ -72,6 +72,11 @@ function weather() {
     curl wttr.in/$1
 }
 
+# If on Ubuntu bat is usually called batcat
+if [[ -x "$(command -v batcat)" ]]; then
+    alias bat='batcat'
+fi
+
 # Copy lines A:B from a file to clipboard
 if [[ -x "$(command -v bat)" ]]; then
     function lc() {
