@@ -3,7 +3,6 @@
     name = th4s
 
 [core]
-    editor = nvim
     pager = delta
 
 [interactive]

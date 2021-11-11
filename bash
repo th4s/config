@@ -17,6 +17,9 @@ elif [[ -x "$(command -v vim)" ]]; then
     export EDITOR=/usr/bin/vim
 fi
 
+# Set visual editor like editor
+export VISUAL=$EDITOR
+
 # Clear terminal history
 alias delhistory='cat /dev/null > ~/.bash_history && history -c'
 
