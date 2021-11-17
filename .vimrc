@@ -177,6 +177,27 @@ command Preview !xdg-open /tmp/vim/preview/%:t:r.pdf
 map <F9> :Preview<CR><CR>
 
 """""""""""""""
+""""""""" NETRW
+"""""""""""""""
+" Disable the banner
+let g:netrw_banner=0
+
+" Make tee view default
+let g:netrw_liststyle = 3
+
+" When opening a new file, open it in a large vsplit on the right
+let g:netrw_altv = 1
+
+" Set netrw window size
+let g:netrw_winsize = 15
+
+" Show preview window in vertical split
+let g:netrw_preview = 1
+
+" Create hotkey for toggling explorer window
+map <C-e> :Lexplore<CR>
+
+"""""""""""""""
 """"""" PLUGINS
 """""""""""""""
 " We use 'vim-plug' as a plugin manager. The following code automates the installation
