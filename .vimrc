@@ -195,7 +195,7 @@ let g:netrw_winsize = 15
 let g:netrw_preview = 1
 
 " Create hotkey for toggling explorer window
-map <C-e> :Lexplore<CR>
+map <C-e> :15Lexplore<CR>
 
 """""""""""""""
 """"""" PLUGINS
