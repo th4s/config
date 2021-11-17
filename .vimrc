@@ -189,13 +189,13 @@ let g:netrw_liststyle = 3
 let g:netrw_altv = 1
 
 " Set netrw window size
-let g:netrw_winsize = 15
+let g:netrw_winsize = 20
 
 " Show preview window in vertical split
 let g:netrw_preview = 1
 
 " Create hotkey for toggling explorer window
-map <C-e> :15Lexplore<CR>
+map <C-e> :20Lex<CR>
 
 """""""""""""""
 """"""" PLUGINS
