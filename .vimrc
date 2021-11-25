@@ -274,9 +274,13 @@ let g:lightline = {
 """"""" NEOVIM ONLY
 """"""""""""""""""""
 if has('nvim')
-" Setup rust_analyzer as nvim language server
+" Setup nvim language server
 lua << EOF
+
+-- Rust
 require('rust-tools').setup({})
+-- Python
+require'lspconfig'.pyright.setup{}
 EOF
 
 """""""""""""""""""
