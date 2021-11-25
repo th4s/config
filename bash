@@ -1,8 +1,25 @@
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
+# Replace capslock with additional CTRL
+setxkbmap -option caps:ctrl_modifier
+
 # Set DIRTY flag to true to enable dirty-marked commands
 DIRTY=true
+
+# DIRTY: Set up internet when connected to dock
+if [[ "$DIRTY" = true ]]; then
+    alias netup='sudo ip link set enp6s0f3u1u1 up && sudo systemctl restart dhcpcd'
+fi
+
+# DIRTY: Switch networks
+if [[ "$DIRTY" = true ]]; then
+    function switch_net() {
+        wpa_cli list_networks
+        read -n 1 -p "Please select a network: " NETWORK
+        wpa_cli select_network $NETWORK
+    } 
+fi
 
 # Set PATH
 PATH="$PATH:$HOME/.local/bin"
@@ -26,11 +43,6 @@ alias delhistory='cat /dev/null > ~/.bash_history && history -c'
 # Update rust
 if [[ -d "$HOME/.cargo" ]]; then
     alias rsup='rustup update && cargo install-update --all'
-fi
-
-# DIRTY: Set up internet when connected to dock
-if [[ "$DIRTY" = true ]]; then
-    alias netup='sudo ip link set enp6s0f3u1u1 up && sudo systemctl restart dhcpcd'
 fi
 
 # Some frequent shortcuts
@@ -72,10 +84,14 @@ function weather() {
     curl wttr.in/$1
 }
 
-# Copy lines A:B from a file to clipboard
-if [[ -x "$(command -v bat)" ]]; then
+# Copy whole file, or lines A:B from a file to clipboard
+if [[ -x "$(command -v bat)" && -x "$(command -v xclip)" ]]; then
     function lc() {
-        bat -pp -r $1 $2 | xclip -se c
+        if [[ "$#" -eq 1 ]]; then
+            bat -pp $1 | xclip -se c
+        else
+            bat -pp -r $1 $2 | xclip -se c
+        fi
     }
 fi
 
@@ -84,17 +100,6 @@ fi
 function loc() {
         find . -name "*.$1" | xargs wc -l | sort -nr
     }
-
-if [[ "$DIRTY" = true ]]; then
-    function switch_net() {
-        wpa_cli list_networks
-        read -n 1 -p "Please select a network: " NETWORK
-        wpa_cli select_network $NETWORK
-    } 
-fi
-
-# Replace capslock with additional CTRL
-setxkbmap -option caps:ctrl_modifier
 
 # Some hotkeys for tmux
 if [[ -x "$(command -v tmux)" ]]; then
