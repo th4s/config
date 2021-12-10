@@ -95,6 +95,16 @@ if [[ -x "$(command -v bat)" && -x "$(command -v xclip)" ]]; then
     }
 fi
 
+# Diff a remote file against a local file
+if [[ -x "$(command -v delta)" && -x "$(command -v wget)" ]]; then
+    function rdiff() {
+            mkdir -p /tmp/cmpr && cd /tmp/cmpr
+            tmpfilename=$(sed 's:.*/::' <<< $1)
+            wget -qO $tmpfilename $1 && cd - >/dev/null
+            delta /tmp/cmpr/${tmpfilename} $2
+        }
+fi
+
 # Count lines of code in a directory recursively for all files
 # having a file ending
 function loc() {
