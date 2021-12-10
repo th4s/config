@@ -49,6 +49,7 @@ fi
 alias ..='cd ..'
 alias ...='cd ../..'
 alias ....='cd ../../..'
+alias ss='. ~/.bashrc'
 
 
 if [[ -x "$(command -v xdg-open)" ]]; then
