@@ -85,6 +85,11 @@ function weather() {
     curl wttr.in/$1
 }
 
+# Create private keys
+function random_pk {
+    cat /dev/urandom | tr -dc 'a-f0-9' | fold -w 64 | head -n $1
+}
+
 # Copy whole file, or lines A:B from a file to clipboard
 if [[ -x "$(command -v bat)" && -x "$(command -v xclip)" ]]; then
     function lc() {
