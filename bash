@@ -1,3 +1,7 @@
+# Install the following tools
+# rust: ripgrep, git-delta, exa, bat, cargo-update,
+# other: git, wget, tmux, zathura, neovim, xclip
+
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
