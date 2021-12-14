@@ -138,6 +138,10 @@ inoremap <C-w> <C-o>:w<CR>
 " Quick window mode
 nnoremap <leader>w <C-w>
 
+" Create new tab and close tab
+nnoremap <leader>tn :tabnew<CR>
+nnoremap <leader>tc :tabclose<CR>
+
 " Use <Tab> and <S-Tab> to navigate through popup menu
 inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
