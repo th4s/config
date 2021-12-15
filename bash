@@ -1,6 +1,6 @@
 # Install the following tools
 # rust: ripgrep, git-delta, exa, bat, cargo-update,
-# other: git, wget, tmux, zathura, neovim, xclip
+# other: git, wget, tmux, zathura, neovim, xclip, fzf
 
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
@@ -156,12 +156,24 @@ if [[ -d "/usr/share/nvm" ]]; then
     . "/usr/share/nvm/init-nvm.sh"
 fi
 
+# Load fzf stuff
+if [[ -x "$(command -v fzf)" ]];then
+    . "/usr/share/fzf/completion.bash"
+    . "/usr/share/fzf/key-bindings.bash"
+
+    # Show all available packages
+    alias packls="pacman -Slq | fzf --multi --preview 'pacman -Si {1}'"
+
+    # Bind "Change Dir" to C-SPACE
+    bind "$(bind -s | grep '^"\\ec"' | sed 's/\\ec/\\C- /')"
+fi
+
 # Source git-prompt and set PS1
 if [[ -e "$HOME/.git-prompt.sh" ]]; then
     . "$HOME/.git-prompt.sh"
     
     # Set prompt_command to display git informationSource
-    PROMPT_COMMAND='__git_ps1 "\[\033[38;5;33m\]\u@\h\[\033[0m\]|\w" "\\\$ "'
+    PROMPT_COMMAND='__git_ps1 "\[\033[38;5;33m\]\u@\h\[\033[0m\]\w" "\\\$ "'
     
     #Some git prompt modification
     GIT_PS1_SHOWCOLORHINTS=true
@@ -170,7 +182,7 @@ if [[ -e "$HOME/.git-prompt.sh" ]]; then
     GIT_PS1_SHOWSTASHSTATE=true
     GIT_PS1_SHOWUNTRACKEDFILES=true
 else
-    PS1='\[\033[38;5;33m\]\u@\h\[\033[0m\]|\w$ '
+    PS1='\[\033[38;5;33m\]\u@\h\[\033[0m\]\w$ '
 fi
 
 
