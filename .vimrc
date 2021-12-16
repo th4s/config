@@ -74,7 +74,7 @@ set exrc
 set nohlsearch
 
 " Start scrolling x lines before the current line reaches the end of the screen
-set scrolloff=8
+set scrolloff=5
 
 " Keep buffers of multiple files in memory so that you can open a new file without saving the current one
 set hidden
@@ -224,7 +224,6 @@ call plug#begin('~/.vim/plugged')
 Plug 'airblade/vim-rooter'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim' 
-Plug 'joshdick/onedark.vim'
 Plug 'itchyny/lightline.vim'
 if has('nvim')
 Plug 'neovim/nvim-lspconfig'
@@ -261,18 +260,22 @@ nnoremap <silent> <leader>f :Rg<CR>
 """"""" COLORS
 """""""""""""""
 " Set colorscheme
-colorscheme onedark
 if (has("termguicolors"))
     set termguicolors
 endif
 
+colorscheme molokai
+let g:rehash256 = 1
+
 " Configure lightline to use one-dark color-scheme
 let g:lightline = {
-  \ 'colorscheme': 'onedark',
+  \ 'colorscheme': 'powerline',
       \ 'active': {
       \   'left': [ [ 'mode', 'paste' ], [ 'readonly', 'absolutepath', 'modified' ] ],
       \ }
   \ }
+" We see the mode in lightline, so we deactivate it in vim
+set noshowmode
 
 """"""""""""""""""""
 """"""" NEOVIM ONLY

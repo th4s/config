@@ -20,7 +20,6 @@
 
 [diff]
     tool = nvimdiff
-    context = 9999
 
 [difftool]
     prompt = false
