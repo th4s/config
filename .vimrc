@@ -259,13 +259,19 @@ nnoremap <silent> <leader>f :Rg<CR>
 """""""""""""""
 """"""" COLORS
 """""""""""""""
-" Set colorscheme
+" Enable better color support"
 if (has("termguicolors"))
     set termguicolors
 endif
 
+" Set colorscheme
 colorscheme molokai
+
+" Use 256-color support for molokai scheme
 let g:rehash256 = 1
+
+" Make background transparent
+hi Normal guibg=NONE ctermbg=NONE
 
 " Configure lightline to use one-dark color-scheme
 let g:lightline = {
