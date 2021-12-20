@@ -157,12 +157,9 @@ if [[ -d "/usr/share/nvm" ]]; then
 fi
 
 # Load fzf stuff
-if [[ -x "$(command -v fzf)" ]];then
+if [[ -d "/usr/share/fzf" ]]; then
     . "/usr/share/fzf/completion.bash"
     . "/usr/share/fzf/key-bindings.bash"
-
-    # Show all available packages
-    alias packls="pacman -Slq | fzf --multi --preview 'pacman -Si {1}'"
 
     # Bind "Change Dir" to C-SPACE
     bind "$(bind -s | grep '^"\\ec"' | sed 's/\\ec/\\C- /')"
