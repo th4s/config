@@ -182,6 +182,10 @@ else
     PS1='\[\033[38;5;33m\]\u@\h\[\033[0m\]\w$ '
 fi
 
+# Source beth
+if [[ -e "$HOME/beth.sh" ]]; then
+    . "beth.sh"
+fi
 
 # Set bash tab complete behavior
 bind "TAB:menu-complete"
