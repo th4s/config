@@ -183,8 +183,8 @@ else
 fi
 
 # Source beth
-if [[ -e "$HOME/beth.sh" ]]; then
-    . "beth.sh"
+if [[ -e "$HOME/.beth.sh" ]]; then
+    . ".beth.sh"
 fi
 
 # Set bash tab complete behavior
