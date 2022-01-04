@@ -166,6 +166,7 @@ if [[ -d "/usr/share/fzf" ]]; then
 
     # Bind "Change Dir" to C-SPACE
     bind "$(bind -s | grep '^"\\ec"' | sed 's/\\ec/\\C- /')"
+    FZF_COMPLETION_TRIGGER='--'
 fi
 
 # Source git-prompt and set PS1
