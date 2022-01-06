@@ -17,6 +17,7 @@
     file-style = bold yellow 
     file-decoration-style = cyan box ul
     hunk-header-style = omit
+    line-numbers-zero-style = yellow
 
 [diff]
     tool = nvimdiff
