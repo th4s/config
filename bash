@@ -8,9 +8,6 @@
 # Replace capslock with additional CTRL
 setxkbmap -option caps:ctrl_modifier
 
-# Set DIRTY flag to true to enable dirty-marked commands
-DIRTY=true
-
 # DIRTY: Set up internet when connected to dock
 if [[ "$DIRTY" = true ]]; then
     alias netup='sudo ip link set enp6s0f3u1u1 up && sudo systemctl restart dhcpcd'
