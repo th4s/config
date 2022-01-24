@@ -61,9 +61,9 @@ if [[ -x "$(command -v xdg-open)" ]]; then
 fi
 
 if [[ -x "$(command -v exa)" ]]; then
-    alias ls='exa'
-    alias ll='exa -algF'
-    alias tree='exa -lgF --tree --git-ignore'
+    alias ls='exa --icons'
+    alias ll='exa -algF --icons'
+    alias tree='exa -lgF --tree --git-ignore --icons'
 fi
 
 if [[ -x "$(command -v git)" ]]; then
