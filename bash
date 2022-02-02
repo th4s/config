@@ -47,6 +47,8 @@ alias delhistory='cat /dev/null > ~/.bash_history && history -c'
 # Update rust
 if [[ -d "$HOME/.cargo" ]]; then
     alias rsup='rustup update && cargo install-update --all'
+    alias c='cargo'
+    alias cc='c c'
 fi
 
 # Some frequent shortcuts
