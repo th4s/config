@@ -142,6 +142,10 @@ nnoremap <leader>w <C-w>
 nnoremap <leader>tn :tabnew<CR>
 nnoremap <leader>tc :tabclose<CR>
 
+" Movement of characters in line 
+nnoremap <S-l> xp
+nnoremap <S-h> xhhp
+
 " Use <Tab> and <S-Tab> to navigate through popup menu
 inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
