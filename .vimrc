@@ -146,6 +146,15 @@ nnoremap <leader>tc :tabclose<CR>
 nnoremap <S-l> xp
 nnoremap <S-h> xhhp
 
+" Sometimes, we do not want to fill registers automatically, i.e. we want to
+" delete something `d` without putting it in a register so that it
+" does not show up when we press `p` afterwards
+nnoremap <leader>d "_d
+vnoremap <leader>d "_d
+
+" Do not yank selected lines when using put in visual mode
+vnoremap p "_dP
+
 " Use <Tab> and <S-Tab> to navigate through popup menu
 inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
@@ -165,13 +174,13 @@ inoremap <expr> > strpart(getline('.'), col('.')-1, 1) == ">" ? "\<Right>" : ">"
 
 " This is our improved return to make correct indentation in '{' and '}'
 " brackets
-fun! MyCR()
+fun! SuperCR()
     if strpart(getline('.'), col('.') - 2, 2) == '{}'
         return "\<CR>\<ESC>\O"
     endif
     return "\<CR>"
 endfun
-autocmd FileType * inoremap <CR> <C-R>=MyCR()<CR>
+autocmd FileType * inoremap <CR> <C-R>=SuperCR()<CR>
 
 " Quickly navigate to an open tab with leader key and number
 noremap <leader>1 1gt
@@ -277,7 +286,7 @@ let g:rehash256 = 1
 " Make background transparent
 hi Normal guibg=NONE ctermbg=NONE
 
-" Configure lightline to use one-dark color-scheme
+" Configure lightline
 let g:lightline = {
   \ 'colorscheme': 'powerline',
       \ 'active': {
