@@ -310,6 +310,8 @@ lua << EOF
 require('rust-tools').setup({})
 -- Python
 require'lspconfig'.pyright.setup{}
+-- Typescript
+require'lspconfig'.tsserver.setup{}
 EOF
 
 """""""""""""""""""
