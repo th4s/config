@@ -312,6 +312,8 @@ require('rust-tools').setup({})
 require'lspconfig'.pyright.setup{}
 -- Typescript
 require'lspconfig'.tsserver.setup{}
+-- Solidity
+require'lspconfig'.solc.setup{}
 EOF
 
 """""""""""""""""""
