@@ -34,9 +34,14 @@ HISTCONTROL="ignorespace"
 # Set nvim as our editor
 if [[ -x "$(command -v nvim)" ]]; then
     export EDITOR=/usr/bin/nvim
+    alias n='nvim'
 elif [[ -x "$(command -v vim)" ]]; then
     export EDITOR=/usr/bin/vim
+    alias n='vim'
 fi
+
+# Very frequently used
+alias nn='n .'
 
 # Set visual editor like editor
 export VISUAL=$EDITOR
