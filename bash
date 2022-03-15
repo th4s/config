@@ -40,9 +40,6 @@ elif [[ -x "$(command -v vim)" ]]; then
     alias n='vim'
 fi
 
-# Very frequently used
-alias nn='n .'
-
 # Set visual editor like editor
 export VISUAL=$EDITOR
 

@@ -204,9 +204,12 @@ map <F9> :Preview<CR><CR>
 "Format file
 nnoremap <F5> gg=G<C-O>
 
-"""""""""""""""
-""""""""" NETRW
-"""""""""""""""
+""""""""""""""""""
+""""""""" EXPLORER
+""""""""""""""""""
+if has('vim')
+
+"""" NETRW setting
 " Disable the banner
 let g:netrw_banner=0
 
@@ -223,7 +226,13 @@ let g:netrw_winsize = 20
 let g:netrw_preview = 1
 
 " Create hotkey for toggling explorer window
-map <C-e> :20Lex<CR>
+map <leader>e :20Lex<CR>
+endif
+
+"""" Neovim Explorer
+if has('nvim')
+map <leader>e :NvimTreeToggle<CR>
+endif
 
 """""""""""""""
 """"""" PLUGINS
@@ -249,6 +258,8 @@ Plug 'hrsh7th/nvim-cmp'
 Plug 'hrsh7th/cmp-vsnip'
 Plug 'hrsh7th/vim-vsnip'
 Plug 'simrat39/rust-tools.nvim'
+Plug 'kyazdani42/nvim-web-devicons'
+Plug 'kyazdani42/nvim-tree.lua'
 endif
 call plug#end()
 
@@ -303,9 +314,17 @@ set noshowmode
 """"""" NEOVIM ONLY
 """"""""""""""""""""
 if has('nvim')
-" Setup nvim language server
 lua << EOF
 
+-- Setup treeview
+require'nvim-tree'.setup{
+disable_netrw = true,
+open_on_setup = true,
+open_on_tab = true,
+hijack_cursor = true
+}
+
+-- Setup nvim language servers
 -- Rust
 require('rust-tools').setup({})
 -- Python
