@@ -231,7 +231,7 @@ endif
 
 """" Neovim Explorer
 if has('nvim')
-map <leader>e :NvimTreeToggle<CR>
+nnoremap <leader>e :NvimTreeFindFileToggle<CR>
 endif
 
 """""""""""""""
