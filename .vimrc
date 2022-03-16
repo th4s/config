@@ -207,8 +207,10 @@ nnoremap <F5> gg=G<C-O>
 """"""""""""""""""
 """"""""" EXPLORER
 """"""""""""""""""
-if has('vim')
-
+"""" Neovim Explorer
+if has('nvim')
+nnoremap <leader>e :NvimTreeFindFileToggle<CR>
+else
 """" NETRW setting
 " Disable the banner
 let g:netrw_banner=0
@@ -227,11 +229,6 @@ let g:netrw_preview = 1
 
 " Create hotkey for toggling explorer window
 map <leader>e :20Lex<CR>
-endif
-
-"""" Neovim Explorer
-if has('nvim')
-nnoremap <leader>e :NvimTreeFindFileToggle<CR>
 endif
 
 """""""""""""""
