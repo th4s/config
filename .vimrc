@@ -142,6 +142,14 @@ nnoremap <leader>w <C-w>
 nnoremap <leader>tn :tabnew<CR>
 nnoremap <leader>tc :tabclose<CR>
 
+" Quickly navigate to an open tab with leader key and number
+noremap <A-1> 1gt
+noremap <A-2> 2gt
+noremap <A-3> 3gt
+noremap <A-4> 4gt
+noremap <A-5> 5gt
+noremap <A-6> 6gt
+
 " Movement of characters in line 
 nnoremap <S-l> xp
 nnoremap <S-h> xhhp
@@ -181,14 +189,6 @@ fun! SuperCR()
     return "\<CR>"
 endfun
 autocmd FileType * inoremap <CR> <C-R>=SuperCR()<CR>
-
-" Quickly navigate to an open tab with leader key and number
-noremap <A-1> 1gt
-noremap <A-2> 2gt
-noremap <A-3> 3gt
-noremap <A-4> 4gt
-noremap <A-5> 5gt
-noremap <A-6> 6gt
 
 " Use spellchecking and add toggle button
 set spelllang=en
@@ -347,7 +347,6 @@ nnoremap <silent> K <cmd>lua vim.lsp.buf.hover()<CR>
 nnoremap <silent> gd <cmd>lua vim.lsp.buf.definition()<CR>
 nnoremap <silent> <F2> <cmd>lua vim.lsp.buf.rename()<CR>
 nnoremap <silent> gr <cmd>lua vim.lsp.buf.references()<CR>
-nnoremap <silent> gt <cmd>lua vim.lsp.buf.type_definition()<CR>
 nnoremap <silent> ga <cmd>lua vim.lsp.buf.code_action()<CR>
 
 """""""""""""""""""""
