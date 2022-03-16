@@ -183,12 +183,12 @@ endfun
 autocmd FileType * inoremap <CR> <C-R>=SuperCR()<CR>
 
 " Quickly navigate to an open tab with leader key and number
-noremap <leader>1 1gt
-noremap <leader>2 2gt
-noremap <leader>3 3gt
-noremap <leader>4 4gt
-noremap <leader>5 5gt
-noremap <leader>6 6gt
+noremap <A-1> 1gt
+noremap <A-2> 2gt
+noremap <A-3> 3gt
+noremap <A-4> 4gt
+noremap <A-5> 5gt
+noremap <A-6> 6gt
 
 " Use spellchecking and add toggle button
 set spelllang=en
