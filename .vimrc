@@ -299,10 +299,11 @@ let g:rehash256 = 1
 
 " Make background transparent
 hi Normal guibg=NONE ctermbg=NONE
+hi TablineSel guibg=RED ctermbg=RED
 
 " Configure lightline
 let g:lightline = {
-  \ 'colorscheme': 'powerline',
+  \ 'colorscheme': 'molokai',
       \ 'active': {
       \   'left': [ [ 'mode', 'paste' ], [ 'readonly', 'absolutepath', 'modified' ] ],
       \ }
