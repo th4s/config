@@ -82,6 +82,9 @@ set hidden
 " We do not want vimdiff to open in read only mode
 set noro
 
+" Set textwidth to 80 characters
+set textwidth=80
+
 
 """""""""""""""
 " BASIC MAPPING
@@ -367,7 +370,7 @@ lua << EOF
       ['<C-d>'] = cmp.mapping.scroll_docs(-4),
       ['<C-f>'] = cmp.mapping.scroll_docs(4),
       ['<C-Space>'] = cmp.mapping.complete(),
-      ['<C-e>'] = cmp.mapping.close(),
+      ['<C-c>'] = cmp.mapping.close(),
       ['<CR>'] = cmp.mapping.confirm({ select = true }),
     },
     sources = {
