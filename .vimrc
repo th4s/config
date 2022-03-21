@@ -250,6 +250,7 @@ Plug 'airblade/vim-rooter'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim' 
 Plug 'itchyny/lightline.vim'
+Plug 'tomlion/vim-solidity'
 if has('nvim')
 Plug 'neovim/nvim-lspconfig'
 Plug 'hrsh7th/cmp-nvim-lsp'
@@ -333,7 +334,7 @@ require'lspconfig'.pyright.setup{}
 -- Typescript
 require'lspconfig'.tsserver.setup{}
 -- Solidity
-require'lspconfig'.solc.setup{}
+require'lspconfig'.solidity_ls.setup{}
 EOF
 
 """""""""""""""""""
