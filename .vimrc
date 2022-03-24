@@ -250,7 +250,7 @@ Plug 'airblade/vim-rooter'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim' 
 Plug 'itchyny/lightline.vim'
-Plug 'tomlion/vim-solidity'
+Plug 'TovarishFin/vim-solidity'
 if has('nvim')
 Plug 'neovim/nvim-lspconfig'
 Plug 'hrsh7th/cmp-nvim-lsp'

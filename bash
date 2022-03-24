@@ -139,7 +139,11 @@ bind '"\e[B": history-search-forward'
 
 # A simple calculator in terminal
 calc() {
-    echo "scale=3;$@" | bc -l
+    if [ $# -eq 0 ]; then
+        bc -ql
+    else
+        echo "scale=3;$@" | bc -l
+    fi
 }
 
 # Configure xclip
