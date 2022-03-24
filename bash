@@ -140,7 +140,8 @@ bind '"\e[B": history-search-forward'
 # A simple calculator in terminal
 calc() {
     if [ $# -eq 0 ]; then
-        bc -ql
+        # replace comma in numblcok with point on german keyboard
+        xmodmap -e "keycode 91 mod2 = KP_Delete period"; bc -ql; xmodmap -e "keycode 91 mod2 = KP_Delete comma"
     else
         echo "scale=3;$@" | bc -l
     fi
