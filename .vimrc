@@ -204,8 +204,16 @@ autocmd BufWritePost *.md :silent !pandoc <afile>:p -V colorlinks=true -V linkco
 command Preview !xdg-open /tmp/vim/preview/%:t:r.pdf
 map <F9> :Preview<CR><CR>
 
-"Format file
+" Format file
 nnoremap <F5> gg=G<C-O>
+
+" Remap some mappings in diff mode
+if &diff
+    " go to next diff
+    nnoremap <leader>n ]c
+    " go to previous diff
+    nnoremap <leader>p [c
+endif
 
 """"""""""""""""""
 """"""""" EXPLORER
