@@ -3,4 +3,5 @@
 
 # Copy to clipboard instead of primary
 set selection-clipboard clipboard
+set sandbox none
 
