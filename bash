@@ -64,6 +64,11 @@ if [[ -x "$(command -v xdg-open)" ]]; then
     alias open='xdg-open'
 fi
 
+# Make our google searches a little bit faster
+function g() {
+    open "https://google.com/search?q="$(printf "+%s" "$@")   
+}
+
 if [[ -x "$(command -v exa)" ]]; then
     alias ls='exa --icons'
     alias ll='exa -algF --icons'
