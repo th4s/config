@@ -1,6 +1,6 @@
 # Install the following tools
 # rust: ripgrep, git-delta, exa, bat, cargo-update,
-# other: git, wget, tmux, zathura, neovim, xclip, fzf
+# other: git, wget, tmux, zathura, neovim, xclip, fzf, bfs
 
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
@@ -176,6 +176,16 @@ fi
 if [[ -d "/usr/share/fzf" ]]; then
     . "/usr/share/fzf/completion.bash"
     . "/usr/share/fzf/key-bindings.bash"
+
+    # We use an improved version of this function, because we use breadth-first
+    # search by using bfs instead of find
+    unset -f __fzf_cd__
+    function __fzf_cd__() {
+        local cmd dir
+        cmd="${FZF_ALT_C_COMMAND:-"command bfs -L . -mindepth 1 \\( -path '*/\\.*' -o -fstype 'sysfs' -o -fstype 'devfs' -o -fstype 'devtmpfs' -o -fstype 'proc' \\) -prune \
+            -o -type d -print 2> /dev/null | cut -b3-"}"
+        dir=$(eval "$cmd" | FZF_DEFAULT_OPTS="--height ${FZF_TMUX_HEIGHT:-40%} --reverse --bind=ctrl-z:ignore $FZF_DEFAULT_OPTS $FZF_ALT_C_OPTS" $(__fzfcmd) +m) && printf 'cd -- %q' "$dir"
+    }
 
     # Bind "Change Dir" to C-SPACE
     bind "$(bind -s | grep '^"\\ec"' | sed 's/\\ec/\\C- /')"
