@@ -48,21 +48,24 @@ alias delhistory='cat /dev/null > ~/.bash_history && history -c'
 
 # Update rust
 if [[ -d "$HOME/.cargo" ]]; then
+    . "$HOME/.cargo/env"
     alias rsup='rustup update && cargo install-update --all'
     alias c='cargo'
     alias cc='c c'
 fi
 
 # Some frequent shortcuts
-alias ..='cd ..'
-alias ...='cd ../..'
-alias ....='cd ../../..'
-alias ss='. ~/.bashrc'
-
-
 if [[ -x "$(command -v xdg-open)" ]]; then
     alias open='xdg-open'
 fi
+
+alias ..='cd ..'
+alias ...='cd ../..'
+alias ....='cd ../../..'
+alias o='open'
+alias ss='. ~/.bashrc'
+
+
 
 # Make our google searches a little bit faster
 function g() {
@@ -160,11 +163,6 @@ if [[ -x "$(command -v xclip)" ]]; then
     alias xc="xclip -se c"
     # copy to pirmary buffer
     alias xb="xclip"
-fi
-
-# Source rust stuff
-if [[ -d "$HOME/.cargo" ]]; then
-    . "$HOME/.cargo/env"
 fi
 
 # Source node-version manager
