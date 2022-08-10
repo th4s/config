@@ -204,8 +204,8 @@ autocmd BufWritePost *.md :silent !pandoc <afile>:p -V colorlinks=true -V linkco
 command Preview !xdg-open /tmp/vim/preview/%:t:r.pdf
 map <F9> :Preview<CR><CR>
 
-" Format file
-nnoremap <F5> gg=G<C-O>
+" We want to use the dbg! macro in Rust very easy
+vnoremap <leader>g :s/\%V.*\%V./dbg!(\&&)<cr>
 
 " Remap some mappings in diff mode
 if &diff
