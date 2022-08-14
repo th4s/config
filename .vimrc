@@ -28,9 +28,6 @@ set undodir=/tmp/vim/undo
 " Create undo files
 set undofile
 
-" Map capslock to ctrl
-silent !setxkbmap -option caps:ctrl_modifier
-
 " Add syntx highlightning an file type identification, plugin and indenting
 syntax on
 filetype plugin indent on
@@ -126,13 +123,13 @@ nnoremap <leader>c :bd<CR>
 " Toggle between current and recent buffer
 nnoremap <leader><leader> <C-^>
 
-" Suspend vim with shortcut (move process to background and then type 'fg' to return to vim)
-inoremap <C-k> <C-o>:sus<CR>
-vnoremap <C-k> :sus<CR>
-nnoremap <C-k> :sus<CR>
-
 " Show current open buffers
 nnoremap <leader>, :ls<CR>
+
+" Suspend vim with shortcut (move process to background and then type 'fg' to return to vim)
+nnoremap <C-s> :sus<CR>
+vnoremap <C-s> :sus<CR>
+inoremap <C-s> :sus<CR>
 
 " Quick save
 nnoremap <C-w> :w<CR>
@@ -146,12 +143,12 @@ nnoremap <leader>tn :tabnew<CR>
 nnoremap <leader>tc :tabclose<CR>
 
 " Quickly navigate to an open tab with leader key and number
-noremap <A-1> 1gt
-noremap <A-2> 2gt
-noremap <A-3> 3gt
-noremap <A-4> 4gt
-noremap <A-5> 5gt
-noremap <A-6> 6gt
+nnoremap <A-1> 1gt
+nnoremap <A-2> 2gt
+nnoremap <A-3> 3gt
+nnoremap <A-4> 4gt
+nnoremap <A-5> 5gt
+nnoremap <A-6> 6gt
 
 " Movement of characters in line 
 nnoremap <S-l> xp
@@ -205,7 +202,7 @@ command Preview !xdg-open /tmp/vim/preview/%:t:r.pdf
 map <F9> :Preview<CR><CR>
 
 " We want to use the dbg! macro in Rust very easy
-vnoremap <leader>g :s/\%V.*\%V./dbg!(\&&)<cr>
+vnoremap <leader>g :s/\%V.*\%V./dbg!(\&&);<CR>
 
 " Remap some mappings in diff mode
 if &diff
@@ -254,11 +251,9 @@ endif
 
 " Now we add the plugins we want to use
 call plug#begin('~/.vim/plugged')
-Plug 'airblade/vim-rooter'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim' 
 Plug 'itchyny/lightline.vim'
-Plug 'TovarishFin/vim-solidity'
 if has('nvim')
 Plug 'neovim/nvim-lspconfig'
 Plug 'hrsh7th/cmp-nvim-lsp'
@@ -341,8 +336,6 @@ require('rust-tools').setup({})
 require'lspconfig'.pyright.setup{}
 -- Typescript
 require'lspconfig'.tsserver.setup{}
--- Solidity
-require'lspconfig'.solidity_ls.setup{}
 EOF
 
 """""""""""""""""""
