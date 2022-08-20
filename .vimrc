@@ -1,5 +1,5 @@
 " IMPORTANT: Make sure to install the rust tools 'bat', 'ripgrep'
-" 'rust_analyzer', 'rust-src'
+" 'rust_analyzer', 'rust-src', 'xclip'
 " :PlugInstall on your first execution
 "
 """""""""""""""""
@@ -163,6 +163,10 @@ vnoremap <leader>d "_d
 " Do not yank selected lines when using put in visual mode
 vnoremap p "_dP
 
+" We want to be able to copy from vim to system clipboard
+nnoremap <leader>y "+y
+vnoremap <leader>y "+y
+
 " Use <Tab> and <S-Tab> to navigate through popup menu
 inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
@@ -200,9 +204,6 @@ inoremap <silent> <F12> <C-O>:set spell!<cr>
 autocmd BufWritePost *.md :silent !pandoc <afile>:p -V colorlinks=true -V linkcolor=blue -V urlcolor=blue -V toccolor=gray -o /tmp/vim/preview/<afile>:t:r.pdf
 command Preview !xdg-open /tmp/vim/preview/%:t:r.pdf
 map <F9> :Preview<CR><CR>
-
-" We want to use the dbg! macro in Rust very easy
-vnoremap <leader>g :s/\%V.*\%V./dbg!(\&&);<CR>
 
 " Remap some mappings in diff mode
 if &diff
