@@ -147,8 +147,10 @@ nnoremap <A-1> 1gt
 nnoremap <A-2> 2gt
 nnoremap <A-3> 3gt
 nnoremap <A-4> 4gt
-nnoremap <A-5> 5gt
-nnoremap <A-6> 6gt
+inoremap <A-1> <C-o>1gt
+inoremap <A-2> <C-o>2gt
+inoremap <A-3> <C-o>3gt
+inoremap <A-4> <C-o>4gt
 
 " Movement of characters in line 
 nnoremap <S-l> xp
