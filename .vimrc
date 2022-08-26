@@ -213,6 +213,11 @@ if &diff
     nnoremap <leader>n ]c
     " go to previous diff
     nnoremap <leader>p [c
+
+    " this is for merging
+    nnoremap <leader>1 :diffget LOCAL<CR>
+    nnoremap <leader>2 :diffget BASE<CR>
+    nnoremap <leader>3 :diffget REMOTE<CR>
 endif
 
 """"""""""""""""""
