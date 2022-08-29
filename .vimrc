@@ -398,8 +398,4 @@ lua << EOF
   }
 EOF
 
-"Git Diff
-command! -nargs=* Do DiffviewOpen
-command! Dc DiffviewClose
-
 endif
