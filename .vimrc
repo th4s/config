@@ -272,6 +272,8 @@ Plug 'hrsh7th/vim-vsnip'
 Plug 'simrat39/rust-tools.nvim'
 Plug 'kyazdani42/nvim-web-devicons'
 Plug 'kyazdani42/nvim-tree.lua'
+Plug 'nvim-lua/plenary.nvim'
+Plug 'sindrets/diffview.nvim'
 endif
 call plug#end()
 
@@ -395,5 +397,9 @@ lua << EOF
     capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
   }
 EOF
+
+"Git Diff
+command! -nargs=* Do DiffviewOpen
+command! Dc DiffviewClose
 
 endif
