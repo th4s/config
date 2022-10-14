@@ -204,7 +204,7 @@ inoremap <silent> <F12> <C-O>:set spell!<cr>
 " We want to compile markdown files to pdf when we save them
 " We also add a :preview command and map it to F9
 autocmd BufWritePost *.md :silent !pandoc <afile>:p -V colorlinks=true -V linkcolor=blue -V urlcolor=blue -V toccolor=gray -o /tmp/vim/preview/<afile>:t:r.pdf
-command Preview !xdg-open /tmp/vim/preview/%:t:r.pdf
+command! Preview !xdg-open /tmp/vim/preview/%:t:r.pdf
 map <F9> :Preview<CR><CR>
 
 " Remap some mappings in diff mode
@@ -332,12 +332,21 @@ if has('nvim')
 lua << EOF
 
 -- Setup treeview
-require'nvim-tree'.setup{
+require('nvim-tree').setup({
 disable_netrw = true,
 open_on_setup = true,
 open_on_tab = true,
-hijack_cursor = true
-}
+hijack_cursor = true,
+sort_by = function(nodes)
+    table.sort(nodes, function(a, b)
+        if a.type ~= b.type then
+            return a.type == "file"
+        else
+            return a.name < b.name
+        end
+    end)
+end
+})
 
 -- Setup nvim language servers
 -- Rust
