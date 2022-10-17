@@ -8,19 +8,11 @@
 # Replace capslock with additional CTRL
 setxkbmap -option caps:ctrl_modifier
 
-# DIRTY: Set up internet when connected to dock
-if [[ "$DIRTY" = true ]]; then
-    alias netup='sudo ip link set enp6s0f3u1u1 up && sudo systemctl restart dhcpcd'
-fi
-
-# DIRTY: Switch networks
-if [[ "$DIRTY" = true ]]; then
-    function switch_net() {
-        wpa_cli list_networks
-        read -n 1 -p "Please select a network: " NETWORK
-        wpa_cli select_network $NETWORK
-    } 
-fi
+function switch-net() {
+    wpa_cli list_networks
+    read -n 1 -p "Please select a network: " NETWORK
+    wpa_cli select_network $NETWORK
+} 
 
 # Set PATH
 PATH="$PATH:$HOME/.local/bin"
