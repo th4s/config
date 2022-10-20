@@ -400,10 +400,10 @@ lua << EOF
       { name = 'buffer' },
     }
   })
-
+  
   -- Setup lspconfig for rust-analyzer
-  require('lspconfig').rust_analyzer.setup {
-    capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
+  require'lspconfig'.rust_analyzer.setup {
+    capabilities = require('cmp_nvim_lsp').default_capabilities() 
   }
 EOF
 
