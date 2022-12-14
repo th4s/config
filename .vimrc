@@ -400,10 +400,6 @@ local function on_attach(client, buffer)
       end,
       group = diag_float_grp,
     })
-
-    -- Goto previous/next diagnostic warning/error
-    vim.keymap.set("n", "<c-d>", vim.diagnostic.goto_prev, keymap_opts)
-    vim.keymap.set("n", "<c-f>", vim.diagnostic.goto_next, keymap_opts)
 end
 
 -- Configure LSP through rust-tools.nvim plugin.
