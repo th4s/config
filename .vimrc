@@ -435,7 +435,7 @@ local opts = {
         },
         imports = {
                 granularity = {
-                    group = "module",
+                    group = "crate",
                 },
                 prefix = "self",
             },
