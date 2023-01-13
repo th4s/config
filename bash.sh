@@ -6,7 +6,7 @@
 [[ $- != *i* ]] && return
 
 # Replace capslock with additional CTRL
-setxkbmap -option caps:ctrl_modifier
+setxkbmap -option caps:ctrl_modifier,shift:both_capslock
 
 function switch-net() {
     wpa_cli list_networks
