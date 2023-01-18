@@ -82,6 +82,9 @@ set noro
 " Set textwidth to 80 characters
 set textwidth=80
 
+" Load local project .nvimrc files
+set exrc
+
 
 """""""""""""""
 " BASIC MAPPING
@@ -425,6 +428,7 @@ local opts = {
   server = {
     -- on_attach is a callback called when the language server attachs to the buffer
     on_attach = on_attach,
+    root_dir = vim.lsp.util.find_git_ancestor,
     settings = {
       -- to enable rust-analyzer settings visit:
       -- https://github.com/rust-analyzer/rust-analyzer/blob/master/docs/user/generated_config.adoc
