@@ -338,7 +338,6 @@ lua << EOF
 -- Setup treeview
 require('nvim-tree').setup({
 disable_netrw = true,
-open_on_setup = true,
 open_on_tab = true,
 hijack_cursor = true,
 sort_by = function(nodes)
