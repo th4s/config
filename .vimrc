@@ -28,7 +28,7 @@ set undodir=/tmp/vim/undo
 " Create undo files
 set undofile
 
-" Add syntx highlightning an file type identification, plugin and indenting
+" Add syntax highlightning an file type identification, plugin and indenting
 syntax on
 filetype plugin indent on
 
@@ -79,7 +79,7 @@ set hidden
 " We do not want vimdiff to open in read only mode
 set noro
 
-" Set textwidth to 80 characters
+" Set text width to 80 characters
 set textwidth=80
 
 " Load local project .nvimrc files
@@ -203,6 +203,8 @@ autocmd FileType * inoremap <CR> <C-R>=SuperCR()<CR>
 set spelllang=en
 nnoremap <silent> <F12> :set spell!<cr>
 inoremap <silent> <F12> <C-O>:set spell!<cr>
+" Activate spell checking by default
+set spell
 
 " We want to compile markdown files to pdf when we save them
 " We also add a :preview command and map it to F9
@@ -425,7 +427,7 @@ local opts = {
   -- these override the defaults set by rust-tools.nvim
   -- see https://github.com/neovim/nvim-lspconfig/blob/master/CONFIG.md#rust_analyzer
   server = {
-    -- on_attach is a callback called when the language server attachs to the buffer
+    -- on_attach is a callback called when the language server attaches to the buffer
     on_attach = on_attach,
     root_dir = vim.lsp.util.find_git_ancestor,
     settings = {
