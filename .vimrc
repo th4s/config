@@ -363,9 +363,9 @@ endif
 
 " Autoformat all the code
 " 
-autocmd BufWritePre *.rs lua vim.lsp.buf.formatting_sync(nil, 1000)
-autocmd BufWritePre *.ts lua vim.lsp.buf.formatting_sync(nil, 1000)
-autocmd BufWritePre *.py lua vim.lsp.buf.formatting_sync(nil, 1000)
+autocmd BufWritePre *.rs lua vim.lsp.buf.format(nil, 1000)
+autocmd BufWritePre *.ts lua vim.lsp.buf.format(nil, 1000)
+autocmd BufWritePre *.py lua vim.lsp.buf.format(nil, 1000)
 
 if has('nvim')
 lua << EOF
