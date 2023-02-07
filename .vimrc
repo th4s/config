@@ -337,7 +337,7 @@ set noshowmode
 if has('nvim')
 
 " Github Copilot
-imap <silent><script><expr> <C-K> copilot#Accept("\<CR>")
+imap <silent><script><expr> <C-K> copilot#Accept("")
 let g:copilot_no_tab_map = v:true
 
 lua << EOF
