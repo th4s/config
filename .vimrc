@@ -335,8 +335,12 @@ set noshowmode
 """"""" NEOVIM ONLY
 """"""""""""""""""""
 if has('nvim')
-lua << EOF
 
+" Github Copilot
+imap <silent><script><expr> <C-K> copilot#Accept("\<CR>")
+let g:copilot_no_tab_map = v:true
+
+lua << EOF
 -- Setup treeview
 require('nvim-tree').setup({
 disable_netrw = true,
