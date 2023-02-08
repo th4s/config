@@ -28,7 +28,7 @@ set undodir=/tmp/vim/undo
 " Create undo files
 set undofile
 
-" Add syntax highlightning an file type identification, plugin and indenting
+" Add syntax highlighting an file type identification, plugin and indenting
 syntax on
 filetype plugin indent on
 
@@ -337,7 +337,7 @@ set noshowmode
 if has('nvim')
 
 " Github Copilot
-imap <silent><script><expr> <C-K> copilot#Accept("")
+imap <silent><script><expr> <leader>a copilot#Accept("")
 let g:copilot_no_tab_map = v:true
 
 lua << EOF
