@@ -399,36 +399,15 @@ local function on_attach(client, buffer)
     vim.keymap.set("n", "gd", vim.lsp.buf.definition, keymap_opts)
     vim.keymap.set("n", "ga", vim.lsp.buf.code_action, keymap_opts)
     vim.keymap.set("n", "<F2>", vim.lsp.buf.rename, keymap_opts)
-
-    -- Show diagnostic popup on cursor hover
-    local diag_float_grp = vim.api.nvim_create_augroup("DiagnosticFloat", { clear = true })
-    vim.api.nvim_create_autocmd("CursorHold", {
-      callback = function()
-        vim.diagnostic.open_float(nil, { focusable = false })
-      end,
-      group = diag_float_grp,
-    })
 end
 
 -- Configure LSP through rust-tools.nvim plugin.
 -- rust-tools will configure and enable certain LSP features for us.
 -- See https://github.com/simrat39/rust-tools.nvim#configuration
 local opts = {
-  tools = {
-    runnables = {
-      use_telescope = true,
-    },
-    inlay_hints = {
-      auto = true,
-      show_parameter_hints = false,
-      parameter_hints_prefix = "",
-      other_hints_prefix = "",
-    },
-  },
-
   -- all the opts to send to nvim-lspconfig
   -- these override the defaults set by rust-tools.nvim
-  -- see https://github.com/neovim/nvim-lspconfig/blob/master/CONFIG.md#rust_analyzer
+  -- see https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#rust_analyzer
   server = {
     -- on_attach is a callback called when the language server attaches to the buffer
     on_attach = on_attach,
@@ -447,6 +426,9 @@ local opts = {
                 },
                 prefix = "self",
             },
+            procMacro = {
+                enable = true
+            },
       },
     },
   },
@@ -455,7 +437,7 @@ local opts = {
 require("rust-tools").setup(opts)
 
 -- Setup Completion
--- See https://github.com/hrsh7th/nvim-cmp#basic-configuration
+-- See https://github.com/hrsh7th/nvim-cmp#recommended-configuration
 local cmp = require("cmp")
 cmp.setup({
   snippet = {
@@ -464,19 +446,13 @@ cmp.setup({
     end,
   },
   mapping = {
-    ["<C-p>"] = cmp.mapping.select_prev_item(),
-    ["<C-n>"] = cmp.mapping.select_next_item(),
-    -- Add tab support
     ["<S-Tab>"] = cmp.mapping.select_prev_item(),
     ["<Tab>"] = cmp.mapping.select_next_item(),
     ["<C-d>"] = cmp.mapping.scroll_docs(-4),
     ["<C-f>"] = cmp.mapping.scroll_docs(4),
     ["<C-Space>"] = cmp.mapping.complete(),
     ["<C-e>"] = cmp.mapping.close(),
-    ["<CR>"] = cmp.mapping.confirm({
-      behavior = cmp.ConfirmBehavior.Insert,
-      select = false,
-    }),
+    ["<CR>"] = cmp.mapping.confirm({ select = false }),
   },
 
   -- Installed sources
@@ -487,15 +463,6 @@ cmp.setup({
     { name = "buffer" },
   },
 })
-
--- have a fixed column for the diagnostics to appear in
--- this removes the jitter when warnings/errors flow in
-vim.wo.signcolumn = "yes"
-
--- " Set updatetime for CursorHold
--- " 300ms of no cursor movement to trigger CursorHold
--- set updatetime=300
-vim.opt.updatetime = 100
 
 EOF
 endif
