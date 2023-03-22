@@ -67,7 +67,14 @@ function g() {
 if [[ -x "$(command -v exa)" ]]; then
     alias ls='exa --icons'
     alias ll='exa -algF --icons'
-    alias tree='exa -lgF --tree --git-ignore --icons'
+    
+    function tree() {
+        if [[ "$#" -eq 1 ]]; then
+            exa -lgF --tree --git-ignore --icons -L $1
+        else
+            exa -lgF --tree --git-ignore --icons
+        fi
+    }
 fi
 
 if [[ -x "$(command -v git)" ]]; then
