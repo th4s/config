@@ -44,6 +44,7 @@ if [[ -d "$HOME/.cargo" ]]; then
     alias rsup='rustup update && cargo install-update --all'
     alias c='cargo'
     alias cc='c c'
+    alias ct='c t'
 fi
 
 # Some frequent shortcuts
@@ -106,6 +107,20 @@ function weather() {
 function random_pk {
     cat /dev/urandom | tr -dc 'a-f0-9' | fold -w 64 | head -n $1
 }
+
+# VPN stuff
+if [[ -x "$(command -v wg)" && -x "$(command -v wg-quick)" ]]; then
+    function vpn() {
+        if [ "$1" = "u" ]; then
+            wg-quick up "$2"
+        elif [ "$1" = "d" ]; then
+            local current=$(sudo wg show | awk 'FNR == 1 { print $2}')
+            if [[ ! -z "$current" ]]; then
+                wg-quick down ${current};
+            fi
+    }
+fi
+
 
 # Copy whole file, or lines A:B from a file to clipboard
 if [[ -x "$(command -v bat)" && -x "$(command -v xclip)" ]]; then
