@@ -118,6 +118,9 @@ if [[ -x "$(command -v wg)" && -x "$(command -v wg-quick)" ]]; then
             if [[ ! -z "$current" ]]; then
                 wg-quick down ${current};
             fi
+        else
+            echo "Usage: vpn [u|d] [interface]"
+        fi
     }
 fi
 
