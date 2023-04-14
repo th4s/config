@@ -113,10 +113,16 @@ if [[ -x "$(command -v wg)" && -x "$(command -v wg-quick)" ]]; then
     function vpn() {
         if [ "$1" = "u" ]; then
             wg-quick up "$2"
+            if [[ -e "$HOME/._proxyconf.pac" ]]; then
+                mv "$HOME/._proxyconf.pac" "$HOME/.proxyconf.pac"
+            fi
         elif [ "$1" = "d" ]; then
             local current=$(sudo wg show | awk 'FNR == 1 { print $2}')
             if [[ ! -z "$current" ]]; then
                 wg-quick down ${current};
+            fi
+            if [[ -e "$HOME/.proxyconf.pac" ]]; then
+                mv "$HOME/.proxyconf.pac" "$HOME/._proxyconf.pac"
             fi
         else
             echo "Usage: vpn [u|d] [interface]"
