@@ -267,6 +267,7 @@ call plug#begin('~/.vim/plugged')
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim' 
 Plug 'itchyny/lightline.vim'
+Plug 'kaarmu/typst.vim'
 if has('nvim')
 Plug 'neovim/nvim-lspconfig'
 Plug 'hrsh7th/cmp-nvim-lsp'
