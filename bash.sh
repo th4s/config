@@ -108,6 +108,11 @@ function random_pk {
     cat /dev/urandom | tr -dc 'a-f0-9' | fold -w 64 | head -n $1
 }
 
+# Recursively replace in all files, but ignore folders starting with dot like .git
+function rerep() {
+    find . \( ! -regex '.*/\..*' \) -type f | xargs sed -i 's/'"$1"'/'"$2"'/g'
+}
+
 # VPN stuff
 if [[ -x "$(command -v wg)" && -x "$(command -v wg-quick)" ]]; then
     function vpn() {
