@@ -1,6 +1,7 @@
 [user]
     email = th4s@metavoid.xyz
     name = th4s
+    signingkey = 95989B3DE6520953
 
 [core]
     pager = delta
@@ -46,3 +47,5 @@
 
 [rerere]
 	enabled = true
+[commit]
+	gpgsign = true

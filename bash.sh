@@ -23,6 +23,10 @@ CDPATH=:~
 # Do not store commands starting with space in bash history
 HISTCONTROL="ignorespace"
 
+#Some terminal setting to make signing commits work
+GPG_TTY=$(tty)
+export GPG_TTY
+
 # Set nvim as our editor
 if [[ -x "$(command -v nvim)" ]]; then
     export EDITOR=/usr/bin/nvim
