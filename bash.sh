@@ -1,5 +1,5 @@
 # Install the following tools
-# rust: ripgrep, git-delta, exa, bat, cargo-update,
+# rust: ripgrep, git-delta, eza, bat, cargo-update,
 # other: git, wget, tmux, zathura, neovim, xclip, fzf, bfs
 
 # If not running interactively, don't do anything
@@ -69,15 +69,15 @@ function g() {
     open "https://google.com/search?q="$(printf "+%s" "$@")   
 }
 
-if [[ -x "$(command -v exa)" ]]; then
-    alias ls='exa --icons'
-    alias ll='exa -algF --icons'
+if [[ -x "$(command -v eza)" ]]; then
+    alias ls='eza --icons'
+    alias ll='eza -algF --icons'
     
     function tree() {
         if [[ "$#" -eq 1 ]]; then
-            exa -lgF --tree --git-ignore --icons -L $1
+            eza -lgF --tree --git-ignore --icons -L $1
         else
-            exa -lgF --tree --git-ignore --icons
+            eza -lgF --tree --git-ignore --icons
         fi
     }
 fi
