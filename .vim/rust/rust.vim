@@ -60,7 +60,7 @@ local opts = {
                 prefix = "self",
             },
             procMacro = {
-                enable = true
+                enable = false
             },
       },
     },
