@@ -47,5 +47,3 @@
 
 [rerere]
 	enabled = true
-[commit]
-	gpgsign = true
